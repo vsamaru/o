@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "ACL": {
+    "dataSource": "testDB",
+    "public": true
+  },
+  "RoleMapping": {
+    "dataSource": "testDB",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "testDB",
+    "public": true,
+    "$options": {
+      "base": "Role",
+      "relations": {
+        "principals": {
+          "type": "hasMany",
+          "model": "roleMapping",
+          "foreignKey": "roleId"
+        }
+      }
+    }
+  },
+  "links": {
+    "dataSource": "testDB",
+    "public": true
+  }
+}
